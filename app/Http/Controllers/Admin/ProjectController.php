@@ -40,10 +40,12 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         // $data =$request->all();
+        // dd($request->all());
         $data = $request->validated();
-        $data["author"] = Auth::user()->name;
+        $data["author"] = Auth::id();
         $data["date"] = Carbon::now();
         $newProject = Project::create($data);
+        $newProject->tecnologies()->sync($data["technologies"]);
 
         return redirect()->route('admin.projects.show', $newProject);
     }
@@ -62,7 +64,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $categories = Category::all();
-        return view('admin.projects.edit', compact('project', 'categories'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'categories', 'technologies'));
     }
 
     /**
@@ -74,6 +77,7 @@ class ProjectController extends Controller
         // $data["author"] = Auth::user()->name;
         // $data["date"] = Carbon::now();
         $project->update($data);
+        $project->tecnologies()->sync($data["technologies"]);
 
         return redirect()->route('admin.projects.show', $project);
     }
