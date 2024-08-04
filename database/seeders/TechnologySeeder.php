@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -13,6 +14,7 @@ class TechnologySeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+
         $technologies = [
         [
             "name" => "PHP",
@@ -32,7 +34,7 @@ class TechnologySeeder extends Seeder
         ],
         [
             "name" => "JavaScript",
-            "version" => 2023.01
+            "version" => 23.01
         ],
         [
             "name" => "React",
@@ -95,5 +97,10 @@ class TechnologySeeder extends Seeder
             "version" => 5.80
         ],
         ];
+
+        foreach ($technologies as $tecnology) {
+            Technology::create($tecnology);
+        }
+
     }
 }
