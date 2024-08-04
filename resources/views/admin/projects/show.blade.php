@@ -26,7 +26,7 @@
             <h3>{{$project->title}}</h3>
             <h3>{{$project->date}}</h3>
             <div class="img">
-                <img src="{{$project->image}}" alt="{{$project->author}}" class="img-fluid">
+                <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->author}}" class="img-fluid">
             </div>
             <p>{{$project->content}}</p>
             <div class="card-footer">
