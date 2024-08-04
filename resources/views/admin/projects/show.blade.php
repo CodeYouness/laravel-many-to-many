@@ -26,7 +26,12 @@
             <h3>{{$project->title}}</h3>
             <h3>{{$project->date}}</h3>
             <div class="img">
+                @if (str_starts_with($project->image, "http"))
+                    <img src="{{ $project->image }}" alt="{{$project->author}}" class="img-fluid">
+                @else
                 <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->author}}" class="img-fluid">
+
+                @endif
             </div>
             <p>{{$project->content}}</p>
             <div class="card-footer">
