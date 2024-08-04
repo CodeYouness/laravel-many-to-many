@@ -8,6 +8,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Technology</th>
                     <th scope="col">Author</th>
                     <th scope="col">Title</th>
                     <th scope="col">Date</th>
@@ -19,6 +20,15 @@
                         <tr>
                             <td>{{$project->id}}</td>
                             <td>{{ ($project->category) ? $project->category->name : '----'}}</td>
+                            <td>
+                            @forelse ($project->tecnologies as $tecnology)
+                            <span class="badge rounded-pill text-bg-dark">{{$tecnology->name}} V:{{$tecnology->version}}</span>
+
+                            @empty
+                            No Technologies
+
+                            @endforelse
+                            </td>
                             <td>{{$project->author}}</td>
                             <td>{{$project->title}}</td>
                             <td>{{$project->date}}</td>

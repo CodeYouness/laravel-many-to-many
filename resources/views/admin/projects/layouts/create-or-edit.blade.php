@@ -24,6 +24,7 @@
                         </div>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="image">Image url:</label>
                     <input type="text" name="image" id="image" class="form-control mb-3"
@@ -34,7 +35,9 @@
                         </div>
                     @enderror
                 </div>
+
                 <div class="mb-3">
+                    <label for="category_id">Category:</label>
                     <select class="form-select" aria-label="Default select example" name="category_id">
                         @foreach ($categories as $category)
                             <option value="{{$category->id}}"
@@ -49,6 +52,25 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="mb-3 container">
+                    <div class="btn-group row" role="group" aria-label="Basic checkbox toggle button group">
+                        @foreach ($technologies as $tecnology)
+                            <div class="col-1 col-md-2 p-0">
+                                <input name="$technologies" type="checkbox" class="btn-check" id="technology-check-{{$tecnology->id}}" autocomplete="off" value="{{$tecnology->id}}">
+                                <label class="btn btn-outline-primary w-100" for="technology-check-{{$tecnology->id}}">
+                                    {{$tecnology->name}}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    @error("tecnologies")
+                        <div class="alert alert-danger mb-3">
+                            {{$message}}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="content">Content:</label>
                     <textarea type="text" name="content" id="content" class="form-control" rows="10" class="form-control">{{ old('content', $project->content)}}</textarea>
